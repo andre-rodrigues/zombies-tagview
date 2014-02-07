@@ -200,8 +200,14 @@ var RenderingSystem = bb.System.extend({
 
   render: function(entity) {
     this.ctx.save();
-    this.ctx.translate(entity.spatial.x - entity.spatial.width / 2, entity.spatial.y)
-    this.ctx.drawImage(this.sprites[entity.renderable.name].data, 0, 0);
+    this.ctx.translate(entity.spatial.x, entity.spatial.y)
+
+    if (entity.hasComponent("walking") && Math.cos(entity.walking.angle) > 0) {
+      this.ctx.scale(-1, 1);
+    }
+
+    this.ctx.drawImage(this.sprites[entity.renderable.name].data, -entity.spatial.width / 2, 0);
+
     this.ctx.restore();
   }
 });
