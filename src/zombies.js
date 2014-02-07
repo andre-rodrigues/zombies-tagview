@@ -185,8 +185,9 @@ var RenderingSystem = bb.System.extend({
 
   process: function() {
     this.clear();
+
     this.entities.toArray().sort(function(entityA, entityB) {
-      return entityA.spatial.y > entityB.spatial.y;
+      return entityA.spatial.y - entityB.spatial.y;
     }).forEach(this.render.bind(this));
   },
 
