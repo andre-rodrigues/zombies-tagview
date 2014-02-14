@@ -2,10 +2,10 @@
   "use strict";
   
   window.ScoreCountSystem = bb.System.extend({
-    init: function () {
+    init: function (scoreView) {
       this.parent();
       this.scoreEntity = null;
-      this.scoreView = window.document.getElementById("score")
+      this.scoreView = scoreView
     },
 
     allowEntity: function(entity) {

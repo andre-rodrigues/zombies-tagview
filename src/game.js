@@ -2,8 +2,8 @@
   "use strict";
 
   window.Game = bb.Class.extend({
-    init: function(ctx) {
-      this.ctx = ctx;
+    init: function(views) {
+      this.views = views;
       this.runner = new bb.Runner;
       this.loader = new bb.Loader;
 
@@ -41,12 +41,12 @@
     reset: function() {
       var world = new bb.World;
 
-      world.addSystem(new ZombieSpawnSystem(this.ctx.canvas))
+      world.addSystem(new ZombieSpawnSystem(this.views.ctx.canvas))
            .addSystem(new WalkingSystem)
-           .addSystem(new BoundingSystem(this.ctx.canvas))
+           .addSystem(new BoundingSystem(this.views.ctx.canvas))
            .addSystem(new AnimationSystem)
-           .addSystem(new RenderingSystem(this.ctx, this.sprites))
-           .addSystem(new ScoreCountSystem());
+           .addSystem(new RenderingSystem(this.views.ctx, this.sprites))
+           .addSystem(new ScoreCountSystem(this.views.score));
 
       this.pause();
       this.runner.onTick = world.process.bind(world);

@@ -24,18 +24,21 @@
     <script src="src/systems/score_count_system.js" type="text/javascript"></script>
     <script src="src/game.js" type="text/javascript"></script>
     <script type="text/javascript">
-      var ctx = document.getElementById("zombies").getContext("2d");
+      var views = {
+        ctx: document.getElementById("zombies").getContext("2d"),
+        score: document.getElementById("score")
+      };
 
       function adjustCanvas() {
-        ctx.canvas.width = window.innerWidth;
-        ctx.canvas.height = window.innerHeight;
+        views.ctx.canvas.width = window.innerWidth;
+        views.ctx.canvas.height = window.innerHeight;
       }
 
       window.onresize = adjustCanvas;
 
       adjustCanvas();
 
-      var game = new Game(ctx);
+      var game = new Game(views);
     </script>
   </body>
 </html>
