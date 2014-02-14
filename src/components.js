@@ -63,7 +63,7 @@
   });
 
   window.Score = bb.Component.extend({
-    type: "scoreComponent",
+    type: "score",
 
     init: function () {
       this.count = 0;

@@ -4,7 +4,8 @@
   window.ScoreCountSystem = bb.System.extend({
     init: function () {
       this.parent();
-      this.score = null;
+      this.scoreEntity = null;
+      this.scoreView = window.document.getElementById("score")
     },
 
     allowEntity: function(entity) {
@@ -12,11 +13,18 @@
     },
 
     process: function(){
-      if (this.score === null) {
-        this.score = this.world.createEntity();
-        this.score.addComponent(new Score());
-        
+      if (this.scoreEntity === null) {
+        this.scoreEntity = this.world.createEntity();
+        this.scoreEntity.addComponent(new Score());
       }
+
+      this.entities.forEach(function(entity){
+        if (entity.clickable.isClicked) {
+          this.scoreEntity.score.count++;
+        }
+      });
+
+      this.scoreView.innerHTML = this.scoreEntity.score.count;
     }
   });
 })(window, bb);
