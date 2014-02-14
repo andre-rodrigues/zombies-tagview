@@ -76,6 +76,7 @@
 
     init: function(time) {
       this.time = time;
+    }
   });
 
   window.Alert = bb.Component.extend({
