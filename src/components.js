@@ -50,7 +50,7 @@
 
     init: function(angle, velocity) {
       this.angle = angle;
-      this.velocity = velocity || Math.random() * 50 + 50;
+      this.velocity = velocity || Math.random() * 20 + 20;
     }
   });
 
