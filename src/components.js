@@ -70,4 +70,12 @@
       this.count = 0;
     }
   });
+
+  window.ZombieDying = bb.Component.extend({
+    type: "zombieDying",
+
+    init: function(time) {
+      this.time = time;
+    }
+  });
 })(window, bb);

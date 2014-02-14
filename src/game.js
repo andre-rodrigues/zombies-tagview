@@ -13,6 +13,7 @@
         zombieSpawning03: new bb.Image("/assets/zombie_rising_3.png"),
         zombieSpawning04: new bb.Image("/assets/zombie_rising_4.png"),
         zombieSpawning05: new bb.Image("/assets/zombie_rising_5.png"),
+
         zombieWalking01: new bb.Image("/assets/zombie_walking_1.png"),
         zombieWalking02: new bb.Image("/assets/zombie_walking_2.png"),
         zombieWalking03: new bb.Image("/assets/zombie_walking_3.png"),
@@ -20,7 +21,14 @@
         zombieWalking05: new bb.Image("/assets/zombie_walking_5.png"),
         zombieWalking06: new bb.Image("/assets/zombie_walking_6.png"),
         zombieWalking07: new bb.Image("/assets/zombie_walking_7.png"),
-        zombieWalking08: new bb.Image("/assets/zombie_walking_8.png")
+        zombieWalking08: new bb.Image("/assets/zombie_walking_8.png"),
+
+        zombieDying01: new bb.Image("/assets/zombie_dying_1.png"),
+        zombieDying02: new bb.Image("/assets/zombie_dying_2.png"),
+        zombieDying03: new bb.Image("/assets/zombie_dying_3.png"),
+        zombieDying04: new bb.Image("/assets/zombie_dying_4.png"),
+        zombieDying05: new bb.Image("/assets/zombie_dying_5.png"),
+        zombieDying06: new bb.Image("/assets/zombie_dying_6.png")
       };
 
       for (var sprite in this.sprites) {
@@ -46,6 +54,7 @@
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(this.views.ctx.canvas))
            .addSystem(new AnimationSystem)
+           .addSystem(new ZombieDieSystem)
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites))
            .addSystem(new ScoreCountSystem(this.views.score));
 

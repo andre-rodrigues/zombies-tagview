@@ -15,7 +15,9 @@
     },
 
     allowEntity: function(entity) {
-      return entity.hasComponent("clickable") && entity.hasComponent("spatial");
+      return entity.hasComponent("clickable")
+                && entity.hasComponent("spatial")
+                && !entity.hasComponent("zombieDying");
     },
 
     click: function(event) {
@@ -40,7 +42,8 @@
     process: function() {
       this.entities.forEach(function(entity) {
         if (this.hasCollisionWith(entity)) {
-          entity.clickable.isClicked = true;;
+          entity.clickable.isClicked = true;
+          entity.addComponent(new ZombieDying(800));
         }
       }, this);
 
