@@ -49,4 +49,12 @@
   window.BoundaryRemovable = bb.Component.extend({
     type: "boundaryRemovable"
   });
+
+  window.Clickable = bb.Component.extend({
+    type: "clickable",
+
+    init: function() {
+      this.isClicked = false;
+    }
+  });
 })(window, bb);
