@@ -22,8 +22,7 @@
 
     clear: function() {
       this.ctx.save();
-      this.ctx.fillStyle = "#000";
-      this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+      this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
       this.ctx.restore();
     },
 
@@ -41,7 +40,7 @@
         this.ctx.scale(-1, 1);
       }
 
-      if (entity.hasComponent("alertable") && 
+      if (entity.hasComponent("alertable") &&
           entity.alertable.action == "runningOut") {
         var spatial = entity.spatial;
 
