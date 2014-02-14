@@ -3,15 +3,20 @@
   <head>
     <title>Zombies</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <style>
-      body {
-        margin: 0;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/>
   </head>
+
   <body>
-    <div id="score" style="position: absolute; color: white;"></div>
-    <canvas id="zombies"></canvas>
+    <div id="game_start">
+      <a onclick="startGame();" href="#" class="start-game">Iniciar Jogo</a>
+    </div>
+
+    <div id="game" class="hidden">
+      <div id="score"></div>
+      <canvas id="zombies"></canvas>
+    </div>
 
     <script src="lib/breakbone.js" type="text/javascript"></script>
     <script src="src/components.js" type="text/javascript"></script>
@@ -26,6 +31,7 @@
     <script src="src/systems/zombie_die_system.js" type="text/javascript"></script>
     <script src="src/systems/alert_system.js" type="text/javascript"></script>
     <script src="src/game.js" type="text/javascript"></script>
+
     <script type="text/javascript">
       var views = {
         ctx: document.getElementById("zombies").getContext("2d"),
@@ -41,7 +47,11 @@
 
       adjustCanvas();
 
-      var game = new Game(views);
+      function startGame() {
+        document.getElementById("game_start").setAttribute("class", "hidden");
+        document.getElementById("game").setAttribute("class", "");
+        var game = new Game(views);
+      }
     </script>
   </body>
 </html>
