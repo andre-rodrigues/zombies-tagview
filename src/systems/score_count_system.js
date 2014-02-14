@@ -18,9 +18,10 @@
         this.scoreEntity.addComponent(new Score());
       }
 
+      var _this = this;
       this.entities.forEach(function(entity){
         if (entity.clickable.isClicked) {
-          this.scoreEntity.score.count++;
+          _this.scoreEntity.score.count++;
         }
       });
 
