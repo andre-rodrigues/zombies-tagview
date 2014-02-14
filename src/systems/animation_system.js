@@ -21,10 +21,9 @@
       animation.currentTime += this.deltaTime;
 
       if (animation.currentTime >= animation.time) {
-        var nextFrame = animation.sprites.indexOf(entity.renderable.name) + 1;
-        if (nextFrame == animation.sprites.length) nextFrame = 0;
-
-        entity.renderable.name = animation.sprites[nextFrame];
+        entity.animation.numberOfIterations++;
+        var frameIndex = entity.animation.numberOfIterations % animation.sprites.length;
+        entity.renderable.name = animation.sprites[frameIndex];
 
         animation.currentTime = 0;
       }

@@ -47,14 +47,23 @@
         zombie.addComponent(new Zombie());
         zombie.addComponent(new Spatial(x, y, 60, 120));
         zombie.addComponent(new Renderable("zombieSpawning"));
-        zombie.addComponent(new ZombieSpawning(800));
+        zombie.addComponent(new ZombieSpawning(2100));
         zombie.addComponent(new Animation([
           "zombieSpawning01",
+          "zombieSpawning01",
+          "zombieSpawning01",
+          "zombieSpawning01",
+          "zombieSpawning01",
+          "zombieSpawning01",
+          "zombieSpawning01",
+          "zombieSpawning02",
+          "zombieSpawning02",
           "zombieSpawning02",
           "zombieSpawning03",
+          "zombieSpawning03",
           "zombieSpawning04",
-          "zombieSpawning05"
-        ], 100));
+          "zombieSpawning05",
+        ], 150));
       }
     }
   });

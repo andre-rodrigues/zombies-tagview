@@ -26,6 +26,7 @@
     init: function(sprites, time) {
       this.sprites = sprites;
       this.time = time;
+      this.numberOfIterations = 0;
     }
   });
 
@@ -46,7 +47,7 @@
 
     init: function(angle, velocity) {
       this.angle = angle;
-      this.velocity = velocity || Math.random() * 100 + 100;
+      this.velocity = velocity || Math.random() * 50 + 50;
     }
   });
 
