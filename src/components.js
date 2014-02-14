@@ -42,7 +42,7 @@
 
     init: function(angle, velocity) {
       this.angle = angle;
-      this.velocity = velocity || Math.random() * 2 + 1;
+      this.velocity = velocity || Math.random() * 100 + 100;
     }
   });
 

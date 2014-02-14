@@ -1,7 +1,7 @@
 (function(window, bb) {
   "use strict";
 
-  window.ZombieSpawnSystem = bb.System.extend({
+  window.ZombieSpawnSystem = window.TimeSystem.extend({
     init: function(area) {
       this.parent();
       this.area = area;
@@ -12,10 +12,12 @@
     },
 
     process: function() {
-      this.entities.forEach(function(entity) {
-        entity.zombieSpawning.time -= 1;
+      this.parent();
 
-        if (entity.zombieSpawning.time == 0) {
+      this.entities.forEach(function(entity) {
+        entity.zombieSpawning.time -= this.deltaTime;
+
+        if (entity.zombieSpawning.time <= 0) {
           entity.removeComponent("zombieSpawning");
 
           var angle = Math.random() * 360;
@@ -34,7 +36,7 @@
 
           entity.addComponent(new BoundaryRemovable);
         }
-      });
+      }, this);
 
       if (Math.random() < 0.05) {
         var zombie = this.world.createEntity();
@@ -44,14 +46,14 @@
 
         zombie.addComponent(new Spatial(x, y, 60, 120));
         zombie.addComponent(new Renderable("zombieSpawning"));
-        zombie.addComponent(new ZombieSpawning(50));
+        zombie.addComponent(new ZombieSpawning(800));
         zombie.addComponent(new Animation([
           "zombieSpawning01",
           "zombieSpawning02",
           "zombieSpawning03",
           "zombieSpawning04",
           "zombieSpawning05"
-        ], 10));
+        ], 100));
       }
     }
   });

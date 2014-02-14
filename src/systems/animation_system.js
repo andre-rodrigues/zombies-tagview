@@ -1,7 +1,7 @@
 (function(window, bb) {
   "use strict";
 
-  window.AnimationSystem = bb.System.extend({
+  window.AnimationSystem = window.TimeSystem.extend({
     allowEntity: function(entity) {
       return entity.hasComponent("animation") && entity.hasComponent("renderable");
     },
@@ -12,14 +12,15 @@
     },
 
     process: function() {
+      this.parent();
       this.entities.forEach(this.animate, this);
     },
 
     animate: function(entity) {
       var animation = entity.animation;
-      animation.currentTime += 1;
+      animation.currentTime += this.deltaTime;
 
-      if (animation.currentTime == animation.time) {
+      if (animation.currentTime >= animation.time) {
         var nextFrame = animation.sprites.indexOf(entity.renderable.name) + 1;
         if (nextFrame == animation.sprites.length) nextFrame = 0;
 
