@@ -76,6 +76,14 @@
 
     init: function(time) {
       this.time = time;
+  });
+
+  window.Alert = bb.Component.extend({
+    type: "alertable",
+
+    init: function(time, action) {
+      this.time = time;
+      this.action = action;
     }
   });
 })(window, bb);

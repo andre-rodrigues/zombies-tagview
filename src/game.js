@@ -28,7 +28,9 @@
         zombieDying03: new bb.Image("/assets/zombie_dying_3.png"),
         zombieDying04: new bb.Image("/assets/zombie_dying_4.png"),
         zombieDying05: new bb.Image("/assets/zombie_dying_5.png"),
-        zombieDying06: new bb.Image("/assets/zombie_dying_6.png")
+        zombieDying06: new bb.Image("/assets/zombie_dying_6.png"),
+
+        alertable:       new bb.Image("/assets/runningOut.png")
       };
 
       for (var sprite in this.sprites) {
@@ -56,7 +58,8 @@
            .addSystem(new AnimationSystem)
            .addSystem(new ZombieDieSystem)
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites))
-           .addSystem(new ScoreCountSystem(this.views.score));
+           .addSystem(new ScoreCountSystem(this.views.score))
+           .addSystem(new AlertSystem);
 
       this.pause();
       this.runner.onTick = world.process.bind(world);

@@ -18,7 +18,13 @@
         if (spatial.x + spatial.width / 2 < 0 ||
             spatial.x - spatial.width / 2 > this.area.width ||
             spatial.y + spatial.height < 0 ||
-            spatial.y - spatial.height > this.area.height) {
+            spatial.y > this.area.height) {
+          
+          var alert = this.world.createEntity();
+          alert.addComponent(new Spatial(spatial.x, spatial.y, spatial.width, spatial.height));
+          alert.addComponent(new Renderable("alertable"));
+          alert.addComponent(new Alert(100, "runningOut"));
+
           this.world.removeEntity(entity);
         }
       }.bind(this));
