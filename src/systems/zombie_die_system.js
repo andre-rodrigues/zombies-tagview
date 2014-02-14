@@ -16,6 +16,7 @@
           "zombieDying05",
           "zombieDying06"
         ];
+        entity.animation.time = 150;
 
         entity.animation.numberOfIterations = 0;
     },

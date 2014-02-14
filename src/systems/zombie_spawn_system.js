@@ -32,8 +32,22 @@
             "zombieWalking05",
             "zombieWalking06",
             "zombieWalking07",
-            "zombieWalking08"
+            "zombieWalking08",
+            "zombieWalking09",
+            "zombieWalking10",
+            "zombieWalking11",
+            "zombieWalking12",
+            "zombieWalking13",
+            "zombieWalking14",
+            "zombieWalking15",
+            "zombieWalking16",
+            "zombieWalking17",
+            "zombieWalking18",
+            "zombieWalking19",
+            "zombieWalking20",
+            "zombieWalking21"
           ];
+          entity.animation.time = 50;
 
           entity.addComponent(new BoundaryRemovable);
         }

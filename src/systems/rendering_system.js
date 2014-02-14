@@ -37,7 +37,7 @@
       this.ctx.save();
       this.ctx.translate(x, y);
 
-      if (entity.hasComponent("walking") && Math.cos(entity.walking.angle) > 0) {
+      if (entity.hasComponent("walking") && Math.cos(entity.walking.angle) < 0) {
         this.ctx.scale(-1, 1);
       }
 
