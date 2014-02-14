@@ -42,6 +42,7 @@
       var world = new bb.World;
 
       world.addSystem(new ZombieSpawnSystem(this.views.ctx.canvas))
+           .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(this.views.ctx.canvas))
            .addSystem(new AnimationSystem)

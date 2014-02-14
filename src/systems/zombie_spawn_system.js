@@ -22,6 +22,7 @@
 
           var angle = Math.random() * 360;
           entity.addComponent(new Walking(angle));
+          entity.addComponent(new Clickable);
 
           entity.animation.sprites = [
             "zombieWalking01",
