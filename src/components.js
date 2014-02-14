@@ -29,6 +29,10 @@
     }
   });
 
+  window.Zombie = bb.Component.extend({
+    type: "zombie"
+  });
+
   window.ZombieSpawning = bb.Component.extend({
     type: "zombieSpawning",
 
@@ -55,6 +59,14 @@
 
     init: function() {
       this.isClicked = false;
+    }
+  });
+
+  window.Score = bb.Component.extend({
+    type: "scoreComponent",
+
+    init: function () {
+      this.count = 0;
     }
   });
 })(window, bb);

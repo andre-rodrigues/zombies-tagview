@@ -44,6 +44,7 @@
         var x = this.area.width * Math.random(),
         y = this.area.height * Math.random();
 
+        zombie.addComponent(new Zombie());
         zombie.addComponent(new Spatial(x, y, 60, 120));
         zombie.addComponent(new Renderable("zombieSpawning"));
         zombie.addComponent(new ZombieSpawning(800));

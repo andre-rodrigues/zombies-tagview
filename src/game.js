@@ -45,7 +45,8 @@
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(this.ctx.canvas))
            .addSystem(new AnimationSystem)
-           .addSystem(new RenderingSystem(this.ctx, this.sprites));
+           .addSystem(new RenderingSystem(this.ctx, this.sprites))
+           .addSystem(new ScoreCountSystem());
 
       this.pause();
       this.runner.onTick = world.process.bind(world);
