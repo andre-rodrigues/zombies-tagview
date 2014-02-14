@@ -3,7 +3,7 @@
 
   window.WalkingSystem = bb.System.extend({
     allowEntity: function(entity) {
-      return entity.hasComponent("walking");
+      return entity.hasComponent("walking") && entity.hasComponent("spatial");
     },
 
     process: function() {
