@@ -62,7 +62,7 @@
           "zombieSpawning03",
           "zombieSpawning03",
           "zombieSpawning04",
-          "zombieSpawning05",
+          "zombieSpawning05"
         ], 150));
       }
     }

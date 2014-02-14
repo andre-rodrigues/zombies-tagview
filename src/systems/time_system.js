@@ -5,10 +5,12 @@
     init: function() {
       this.parent();
       this.lastFrameTime = new Date();
+      this.elapsedTime = 0;
     },
 
     process: function() {
       this.deltaTime = new Date() - this.lastFrameTime;
+      this.elapsedTime = this.elapsedTime + this.deltaTime;
       this.lastFrameTime = new Date();
     }
   });
