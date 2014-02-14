@@ -20,11 +20,16 @@
 
       var _this = this;
       this.entities.forEach(function(entity){
-        if (entity.clickable.isClicked) {
-          _this.scoreEntity.score.count++;
+        if (entity.clickable.isClicked && !entity.zombie.scoreProcessed) {
+          _this.scoreEntity.score.pendingCount += 20;
+          entity.zombie.scoreProcessed = true;
         }
       });
 
+      if (this.scoreEntity.score.pendingCount > 0) {
+        this.scoreEntity.score.pendingCount--;
+        this.scoreEntity.score.count++;
+      }
       this.scoreView.innerHTML = this.scoreEntity.score.count;
     }
   });
