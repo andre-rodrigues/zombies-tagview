@@ -9,6 +9,15 @@
       this.y = y || 0;
       this.width = width || 20;
       this.height = height || 20;
+    },
+
+    containsPoint: function(x, y) {
+      var halfWidth = this.width / 2;
+
+      return x <= this.x + halfWidth &&
+             x >= this.x - halfWidth &&
+             y <= this.y + this.height &&
+             y >= this.y;
     }
   });
 

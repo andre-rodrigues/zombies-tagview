@@ -24,18 +24,9 @@
       this.clicks.push({ x: event.offsetX, y: event.offsetY });
     },
 
-    hasCollisionInX: function(click, spatial) {
-      var halfWidth = spatial.width / 2;
-      return click.x <= spatial.x + halfWidth && click.x >= spatial.x - halfWidth;
-    },
-
-    hasCollisionInY: function(click, spatial) {
-      return click.y <= spatial.y + spatial.height && click.y >= spatial.y;
-    },
-
     hasCollisionWith: function(entity) {
       return this.clicks.some(function(click) {
-        return this.hasCollisionInX(click, entity.spatial) && this.hasCollisionInY(click, entity.spatial);
+        return entity.spatial.containsPoint(click.x, click.y);
       }, this);
     },
 
