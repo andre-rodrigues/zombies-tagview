@@ -1,6 +1,6 @@
 (function(window, bb){
   "use strict";
-  
+
   window.ScoreCountSystem = bb.System.extend({
     init: function (scoreView) {
       this.parent();
@@ -9,7 +9,14 @@
     },
 
     allowEntity: function(entity) {
-      return entity.hasComponent("clickable") &&  entity.hasComponent("zombie");
+      return entity.hasComponent("zombie");
+    },
+
+    entityChanged: function(entity) {
+      if (entity.hasComponent("zombieDying") && !entity.zombie.scoreProcessed) {
+        this.scoreEntity.score.pendingCount += 20;
+        entity.zombie.scoreProcessed = true;
+      }
     },
 
     process: function(){
@@ -17,14 +24,6 @@
         this.scoreEntity = this.world.createEntity();
         this.scoreEntity.addComponent(new Score());
       }
-
-      var _this = this;
-      this.entities.forEach(function(entity){
-        if (entity.clickable.isClicked && !entity.zombie.scoreProcessed) {
-          _this.scoreEntity.score.pendingCount += 20;
-          entity.zombie.scoreProcessed = true;
-        }
-      });
 
       if (this.scoreEntity.score.pendingCount > 0) {
         this.scoreEntity.score.pendingCount--;

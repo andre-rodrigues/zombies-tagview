@@ -36,6 +36,12 @@
       this.sprites = sprites;
       this.time = time;
       this.numberOfIterations = 0;
+
+      Object.defineProperty(this, "totalTime", {
+        get: function() {
+          return this.time * this.sprites.length;
+        }.bind(this)
+      });
     }
   });
 
@@ -85,11 +91,7 @@
   });
 
   window.ZombieDying = bb.Component.extend({
-    type: "zombieDying",
-
-    init: function(time) {
-      this.time = time;
-    }
+    type: "zombieDying"
   });
 
   window.Alert = bb.Component.extend({
@@ -98,6 +100,18 @@
     init: function(time, action) {
       this.time = time;
       this.action = action;
+    }
+  });
+
+  window.Expire = bb.Component.extend({
+    type: "expire",
+
+    init: function(lifetime) {
+      this.lifetime = lifetime;
+    },
+
+    isExpired: function() {
+      return this.lifetime <= 0;
     }
   });
 })(window, bb);

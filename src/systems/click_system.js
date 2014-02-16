@@ -15,16 +15,14 @@
     },
 
     allowEntity: function(entity) {
-      return entity.hasComponent("clickable")
-                && entity.hasComponent("spatial")
-                && !entity.hasComponent("zombieDying");
+      return entity.hasComponent("clickable") && entity.hasComponent("spatial");
     },
 
     click: function(event) {
       this.clicks.push({ x: event.offsetX, y: event.offsetY });
     },
 
-    hasCollisionWith: function(entity) {
+    isClicking: function(entity) {
       return this.clicks.some(function(click) {
         return entity.spatial.containsPoint(click.x, click.y);
       }, this);
@@ -32,10 +30,7 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        if (this.hasCollisionWith(entity)) {
-          entity.clickable.isClicked = true;
-          entity.addComponent(new ZombieDying(800));
-        }
+        entity.clickable.isClicked = this.isClicking(entity);
       }, this);
 
       this.clicks.clear();
