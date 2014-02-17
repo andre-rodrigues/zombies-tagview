@@ -6,8 +6,7 @@
   window.Alert = bb.Component.extend({
     type: "alertable",
 
-    init: function(time, action) {
-      this.time = time;
+    init: function(action) {
       this.action = action;
     }
   });

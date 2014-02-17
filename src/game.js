@@ -72,8 +72,7 @@
            .addSystem(new AnimationSystem)
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites))
            .addSystem(new ScoreCountSystem(this.views.score))
-           .addSystem(new ZombieDieSystem)
-           .addSystem(new AlertSystem);
+           .addSystem(new ZombieDieSystem);
 
       this.pause();
       this.runner.onTick = world.process.bind(world);

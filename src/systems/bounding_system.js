@@ -19,15 +19,21 @@
             spatial.x - spatial.width / 2 > this.area.width ||
             spatial.y + spatial.height < 0 ||
             spatial.y > this.area.height) {
-          
-          var alert = this.world.createEntity();
-          alert.addComponent(new Spatial(spatial.x, spatial.y, spatial.width, spatial.height));
-          alert.addComponent(new Renderable("alertable"));
-          alert.addComponent(new Alert(100, "runningOut"));
+
+          // TODO: this is simply not right
+          if (entity.hasComponent("zombie")) this.createAlert(entity.spatial);
 
           this.world.removeEntity(entity);
         }
       }.bind(this));
+    },
+
+    createAlert: function(spatial) {
+      var alert = this.world.createEntity();
+      alert.addComponent(new Spatial(spatial.x, spatial.y, spatial.width, spatial.height));
+      alert.addComponent(new Renderable("alertable"));
+      alert.addComponent(new Alert("runningOut"));
+      alert.addComponent(new Expire(2 * 1000));
     }
   });
 })(window, bb);
