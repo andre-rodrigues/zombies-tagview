@@ -69,10 +69,10 @@
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(this.views.ctx.canvas))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
+           .addSystem(new ZombieDieSystem)
            .addSystem(new AnimationSystem)
-           .addSystem(new RenderingSystem(this.views.ctx, this.sprites))
            .addSystem(new ScoreCountSystem(this.views.score))
-           .addSystem(new ZombieDieSystem);
+           .addSystem(new RenderingSystem(this.views.ctx, this.sprites));
 
       this.pause();
 
