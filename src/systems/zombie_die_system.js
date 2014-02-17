@@ -3,7 +3,7 @@
 
   window.ZombieDieSystem = window.TimeSystem.extend({
     allowEntity: function(entity) {
-      return entity.hasComponent("clickable") && entity.hasComponent("zombie");
+      return entity.hasComponent("clickable") && entity.hasTag("zombie");
     },
 
     process: function() {

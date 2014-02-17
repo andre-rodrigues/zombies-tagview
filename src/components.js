@@ -88,10 +88,6 @@
     }
   });
 
-  window.Zombie = bb.Component.extend({
-    type: "zombie"
-  });
-
   window.ZombieDying = bb.Component.extend({
     type: "zombieDying"
   });

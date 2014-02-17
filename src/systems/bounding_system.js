@@ -21,7 +21,7 @@
             spatial.y > this.area.height) {
 
           // TODO: this is simply not right
-          if (entity.hasComponent("zombie")) this.createAlert(entity.spatial);
+          if (entity.hasTag("zombie")) this.createAlert(entity.spatial);
 
           this.world.removeEntity(entity);
         }

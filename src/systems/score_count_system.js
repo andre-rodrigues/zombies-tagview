@@ -13,7 +13,7 @@
     },
 
     allowEntity: function(entity) {
-      return entity.hasComponent("zombie");
+      return entity.hasTag("zombie");
     },
 
     entityChanged: function(entity) {
