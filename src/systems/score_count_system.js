@@ -1,11 +1,14 @@
 (function(window, bb){
   "use strict";
 
+  var ZOMBIE_KILL_SCORE = 20;
+
   window.ScoreCountSystem = bb.System.extend({
     init: function (scoreView) {
       this.parent();
       this.scoreEntity = null;
-      this.scoreView = scoreView
+      this.scoreView = scoreView;
+      this.deadZombies = new bb.Set;
     },
 
     allowEntity: function(entity) {
@@ -13,10 +16,14 @@
     },
 
     entityChanged: function(entity) {
-      if (entity.hasComponent("zombieDying") && !entity.zombie.scoreProcessed) {
-        this.scoreEntity.score.pendingCount += 20;
-        entity.zombie.scoreProcessed = true;
+      if (entity.hasComponent("zombieDying") && !this.deadZombies.contains(entity)) {
+        this.deadZombies.add(entity);
+        this.scoreEntity.score.pendingCount += ZOMBIE_KILL_SCORE;
       }
+    },
+
+    entityRemoved: function(entity) {
+      this.deadZombies.remove(entity);
     },
 
     process: function(){

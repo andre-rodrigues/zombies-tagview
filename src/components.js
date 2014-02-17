@@ -46,10 +46,7 @@
   });
 
   window.Zombie = bb.Component.extend({
-    type: "zombie",
-    init: function () {
-      this.scoreProcessed = false;
-    }
+    type: "zombie"
   });
 
   window.ZombieSpawning = bb.Component.extend({
