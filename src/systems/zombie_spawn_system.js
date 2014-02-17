@@ -1,7 +1,7 @@
 (function(window, bb) {
   "use strict";
 
-  window.ZombieSpawnSystem = window.TimeSystem.extend({
+  window.ZombieSpawnSystem = bb.System.extend({
     init: function(area) {
       this.parent();
       this.area = area;
@@ -12,10 +12,8 @@
     },
 
     process: function() {
-      this.parent();
-
       this.entities.forEach(function(entity) {
-        entity.zombieSpawning.time -= this.deltaTime;
+        entity.zombieSpawning.time -= this.world.deltaTime;
 
         if (entity.zombieSpawning.time <= 0) {
           entity.removeComponent("zombieSpawning");

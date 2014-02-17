@@ -1,14 +1,12 @@
 (function(window, bb) {
   "use strict";
 
-  window.ZombieDieSystem = window.TimeSystem.extend({
+  window.ZombieDieSystem = bb.System.extend({
     allowEntity: function(entity) {
       return entity.hasComponent("clickable") && entity.hasTag("zombie");
     },
 
     process: function() {
-      this.parent();
-
       this.entities.forEach(function(entity) {
         if (entity.clickable.isClicked) {
           entity.removeComponent("clickable");

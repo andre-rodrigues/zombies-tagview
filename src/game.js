@@ -75,7 +75,12 @@
            .addSystem(new ZombieDieSystem);
 
       this.pause();
-      this.runner.onTick = world.process.bind(world);
+
+      this.runner.onTick = function(deltaTime) {
+        world.deltaTime = deltaTime;
+        world.process();
+      }
+
       this.start();
     }
   });
