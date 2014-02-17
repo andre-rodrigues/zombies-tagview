@@ -16,14 +16,14 @@
       return entity.hasTag("zombie");
     },
 
-    entityChanged: function(entity) {
+    onEntityChange: function(entity) {
       if (entity.hasComponent("zombieDying") && !this.deadZombies.contains(entity)) {
         this.deadZombies.add(entity);
         this.score += ZOMBIE_KILL_SCORE;
       }
     },
 
-    entityRemoved: function(entity) {
+    onEntityRemoval: function(entity) {
       this.deadZombies.remove(entity);
     },
 
