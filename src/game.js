@@ -43,7 +43,7 @@
         zombieDying05: new bb.Image("assets/zombie_dying_5.png"),
         zombieDying06: new bb.Image("assets/zombie_dying_6.png"),
 
-        alertable:       new bb.Image("assets/runningOut.png")
+        alertable: new bb.Image("assets/runningOut.png")
       };
 
       for (var sprite in this.sprites) {
