@@ -17,7 +17,7 @@
 
       this.entities.toArray().sort(function(entityA, entityB) {
         return entityA.spatial.y - entityB.spatial.y;
-      }).forEach(this.render.bind(this));
+      }).forEach(this.render, this);
     },
 
     clear: function() {
