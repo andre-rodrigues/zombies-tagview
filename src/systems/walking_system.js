@@ -8,11 +8,6 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        // TODO: Engine bug
-        // After the ZombiDieSytem removes the walking sytem
-        // the entities are not updated on the same loop
-        if (!entity.walking) return;
-
         var velocity = entity.walking.velocity,
             distance = (this.world.deltaTime / 1000) * velocity;
 
