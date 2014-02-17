@@ -1,6 +1,65 @@
 (function(window, bb) {
   "use strict";
 
+  // NOTE: Keep the components in alphabetical order
+
+  window.Alert = bb.Component.extend({
+    type: "alertable",
+
+    init: function(time, action) {
+      this.time = time;
+      this.action = action;
+    }
+  });
+
+  window.Animation = bb.Component.extend({
+    type: "animation",
+
+    init: function(sprites, time) {
+      this.sprites = sprites;
+      this.time = time;
+      this.numberOfIterations = 0;
+
+      Object.defineProperty(this, "totalTime", {
+        get: function() {
+          return this.time * this.sprites.length;
+        }.bind(this)
+      });
+    }
+  });
+
+  window.BoundaryRemovable = bb.Component.extend({
+    type: "boundaryRemovable"
+  });
+
+  window.Clickable = bb.Component.extend({
+    type: "clickable",
+
+    init: function() {
+      this.isClicked = false;
+    }
+  });
+
+  window.Expire = bb.Component.extend({
+    type: "expire",
+
+    init: function(lifetime) {
+      this.lifetime = lifetime;
+    },
+
+    isExpired: function() {
+      return this.lifetime <= 0;
+    }
+  });
+
+  window.Renderable = bb.Component.extend({
+    type: "renderable",
+
+    init: function(name) {
+      this.name = name;
+    }
+  });
+
   window.Spatial = bb.Component.extend({
     type: "spatial",
 
@@ -21,42 +80,6 @@
     }
   });
 
-  window.Renderable = bb.Component.extend({
-    type: "renderable",
-
-    init: function(name) {
-      this.name = name;
-    }
-  });
-
-  window.Animation = bb.Component.extend({
-    type: "animation",
-
-    init: function(sprites, time) {
-      this.sprites = sprites;
-      this.time = time;
-      this.numberOfIterations = 0;
-
-      Object.defineProperty(this, "totalTime", {
-        get: function() {
-          return this.time * this.sprites.length;
-        }.bind(this)
-      });
-    }
-  });
-
-  window.Zombie = bb.Component.extend({
-    type: "zombie"
-  });
-
-  window.ZombieSpawning = bb.Component.extend({
-    type: "zombieSpawning",
-
-    init: function(time) {
-      this.time = time;
-    }
-  });
-
   window.Walking = bb.Component.extend({
     type: "walking",
 
@@ -66,40 +89,19 @@
     }
   });
 
-  window.BoundaryRemovable = bb.Component.extend({
-    type: "boundaryRemovable"
-  });
-
-  window.Clickable = bb.Component.extend({
-    type: "clickable",
-
-    init: function() {
-      this.isClicked = false;
-    }
+  window.Zombie = bb.Component.extend({
+    type: "zombie"
   });
 
   window.ZombieDying = bb.Component.extend({
     type: "zombieDying"
   });
 
-  window.Alert = bb.Component.extend({
-    type: "alertable",
+  window.ZombieSpawning = bb.Component.extend({
+    type: "zombieSpawning",
 
-    init: function(time, action) {
+    init: function(time) {
       this.time = time;
-      this.action = action;
-    }
-  });
-
-  window.Expire = bb.Component.extend({
-    type: "expire",
-
-    init: function(lifetime) {
-      this.lifetime = lifetime;
-    },
-
-    isExpired: function() {
-      return this.lifetime <= 0;
     }
   });
 })(window, bb);
