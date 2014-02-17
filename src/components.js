@@ -78,15 +78,6 @@
     }
   });
 
-  window.Score = bb.Component.extend({
-    type: "score",
-
-    init: function () {
-      this.count = 0;
-      this.pendingCount = 0;
-    }
-  });
-
   window.ZombieDying = bb.Component.extend({
     type: "zombieDying"
   });

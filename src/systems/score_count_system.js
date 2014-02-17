@@ -4,11 +4,12 @@
   var ZOMBIE_KILL_SCORE = 20;
 
   window.ScoreCountSystem = bb.System.extend({
-    init: function (scoreView) {
+    init: function(scoreView) {
       this.parent();
-      this.scoreEntity = null;
       this.scoreView = scoreView;
+      this.scoreView.innerHTML = 0;
       this.deadZombies = new bb.Set;
+      this.score = 0;
     },
 
     allowEntity: function(entity) {
@@ -18,7 +19,7 @@
     entityChanged: function(entity) {
       if (entity.hasComponent("zombieDying") && !this.deadZombies.contains(entity)) {
         this.deadZombies.add(entity);
-        this.scoreEntity.score.pendingCount += ZOMBIE_KILL_SCORE;
+        this.score += ZOMBIE_KILL_SCORE;
       }
     },
 
@@ -26,17 +27,12 @@
       this.deadZombies.remove(entity);
     },
 
-    process: function(){
-      if (this.scoreEntity === null) {
-        this.scoreEntity = this.world.createEntity();
-        this.scoreEntity.addComponent(new Score());
+    process: function() {
+      // We are doing this to have a animation effect of the increasing score
+      var currentScoreView = parseInt(this.scoreView.innerHTML, 10);
+      if (currentScoreView < this.score) {
+        this.scoreView.innerHTML = currentScoreView + 1;
       }
-
-      if (this.scoreEntity.score.pendingCount > 0) {
-        this.scoreEntity.score.pendingCount--;
-        this.scoreEntity.score.count++;
-      }
-      this.scoreView.innerHTML = this.scoreEntity.score.count;
     }
   });
 })(window, bb);
