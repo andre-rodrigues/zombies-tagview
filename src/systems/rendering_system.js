@@ -40,23 +40,20 @@
         this.ctx.scale(-1, 1);
       }
 
-      if (entity.hasComponent("alertable") &&
-          entity.alertable.action == "runningOut") {
+      if (entity.hasComponent("alertable") && entity.alertable.isRunningOut()) {
         var spatial = entity.spatial;
 
         if (spatial.x + spatial.width / 2 < 0) {
           entity.spatial.x += 60;
-        }
-        if (spatial.x - spatial.width / 2 > this.ctx.canvas.width) {
+        } else if (spatial.x - spatial.width / 2 > this.ctx.canvas.width) {
           entity.spatial.x -= 100;
         }
+
         if (spatial.y + spatial.height < 0) {
           entity.spatial.y += 120;
-        }
-        if (spatial.y > this.ctx.canvas.height) {
+        } else if (spatial.y > this.ctx.canvas.height) {
           entity.spatial.y -= 30;
         }
-
       }
 
       this.ctx.drawImage(image, -width / 2, 0);

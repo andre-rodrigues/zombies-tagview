@@ -8,6 +8,10 @@
 
     init: function(action) {
       this.action = action;
+    },
+
+    isRunningOut: function() {
+      return this.action == "runningOut";
     }
   });
 
