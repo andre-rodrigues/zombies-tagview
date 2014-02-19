@@ -73,6 +73,7 @@
            .addSystem(new ZombieDieSystem)
            .addSystem(new AnimationSystem)
            .addSystem(new ScoreCountSystem(this.views.score))
+           .addSystem(new BlinkSystem)
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites));
 
       this.pause();

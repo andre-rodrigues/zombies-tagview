@@ -70,6 +70,20 @@
     }
   });
 
+  window.Blink = bb.Component.extend({
+    type: "blink",
+
+    init: function(rate, level) {
+      this.rate = rate || 100;
+      this.level = level || 0;
+      this.elapsedTime = 0;
+    },
+
+    isOff: function() {
+      return Math.floor((this.elapsedTime / this.rate) % 2) == 0;
+    }
+  });
+
   window.BoundaryRemovable = bb.Component.extend({
     type: "boundaryRemovable"
   });

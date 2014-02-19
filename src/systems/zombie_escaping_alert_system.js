@@ -28,6 +28,7 @@
       var alert = this.world.createEntity();
       alert.addComponent(new Spatial(spatial.x, spatial.y, spatial.width, spatial.height));
       alert.addComponent(new Renderable("alertable"));
+      alert.addComponent(new Blink(30, .3));
       alert.addComponent(new Alert("runningOut"));
       alert.addComponent(new Expire(2 * 1000));
     }
