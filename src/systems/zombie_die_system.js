@@ -22,8 +22,8 @@
             "zombieDying05",
             "zombieDying06"
           ];
-          entity.animation.time = 150;
-          entity.animation.numberOfIterations = 0;
+          entity.animation.frameTime = 150;
+          entity.animation.repeat = 0;
 
           entity.addComponent(new Expire(entity.animation.totalTime));
         }

@@ -45,7 +45,7 @@
             "zombieWalking20",
             "zombieWalking21"
           ];
-          entity.animation.time = 50;
+          entity.animation.frameTime = 50;
 
           entity.addComponent(new BoundaryRemovable);
         }

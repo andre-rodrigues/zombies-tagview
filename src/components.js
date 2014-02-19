@@ -13,17 +13,56 @@
 
   window.Animation = bb.Component.extend({
     type: "animation",
+    repeat: Infinity,
 
-    init: function(sprites, time) {
-      this.sprites = sprites;
-      this.time = time;
-      this.numberOfIterations = 0;
+    init: function(sprites, frameTime) {
+      sprites = sprites;
+
+      this.frameTime = frameTime;
+      this.elapsedTime = 0;
 
       Object.defineProperty(this, "totalTime", {
         get: function() {
-          return this.time * this.sprites.length;
+          return this.frameTime * this.sprites.length;
         }.bind(this)
       });
+
+      Object.defineProperty(this, "sprites", {
+        get: function() {
+          return sprites;
+        },
+
+        set: function(newSprites) {
+          sprites = newSprites;
+          this.elapsedTime = 0;
+        }.bind(this)
+      });
+
+      Object.defineProperty(this, "cycles", {
+        get: function() {
+          return Math.floor(this.elapsedTime / this.totalTime);
+        }.bind(this)
+      });
+
+      Object.defineProperty(this, "currentFrame", {
+        get: function() {
+          if (this.isStopped()) {
+            return this.sprites.length - 1;
+          } else {
+            return Math.floor((this.elapsedTime / this.frameTime) % this.sprites.length);
+          }
+        }.bind(this)
+      });
+
+      Object.defineProperty(this, "currentSprite", {
+        get: function() {
+          return this.sprites[this.currentFrame];
+        }.bind(this)
+      });
+    },
+
+    isStopped: function() {
+      return this.cycles > this.repeat;
     }
   });
 
