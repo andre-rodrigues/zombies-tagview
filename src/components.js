@@ -94,6 +94,14 @@
     }
   });
 
+  window.Opacity = bb.Component.extend({
+    type: "opacity",
+
+    init: function(level) {
+      this.level = level || 1;
+    }
+  });
+
   window.Renderable = bb.Component.extend({
     type: "renderable",
 

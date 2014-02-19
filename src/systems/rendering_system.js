@@ -56,6 +56,10 @@
         }
       }
 
+      if (entity.hasComponent("opacity")) {
+        this.ctx.globalAlpha = entity.opacity.level;
+      }
+
       this.ctx.drawImage(image, -width / 2, 0);
       this.ctx.restore();
     }
