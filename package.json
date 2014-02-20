@@ -1,0 +1,8 @@
+{
+  "name": "Zombies",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "uglify-js": "latest"
+  }
+}
