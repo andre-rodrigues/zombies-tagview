@@ -13,13 +13,7 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        var spatial = entity.spatial;
-
-        if (spatial.x + spatial.width / 2 < 0 ||
-            spatial.x - spatial.width / 2 > this.area.width ||
-            spatial.y + spatial.height < 0 ||
-            spatial.y > this.area.height) {
-
+        if (!entity.spatial.intersects(this.area)) {
           this.world.removeEntity(entity);
         }
       }.bind(this));

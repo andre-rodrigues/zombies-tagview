@@ -24,7 +24,7 @@
 
     isClicking: function(entity) {
       return this.clicks.some(function(click) {
-        return entity.spatial.containsPoint(click.x, click.y);
+        return entity.spatial.contains({ x: click.x, y: click.y });
       }, this);
     },
 

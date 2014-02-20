@@ -64,11 +64,18 @@
     reset: function() {
       var world = new bb.World;
 
+      var screen = new Rectangle(
+        this.views.ctx.canvas.offsetLeft,
+        this.views.ctx.canvas.offsetTop,
+        this.views.ctx.canvas.width,
+        this.views.ctx.canvas.height
+      );
+
       world.addSystem(new ExpirationSystem)
-           .addSystem(new ZombieSpawnSystem(this.views.ctx.canvas))
+           .addSystem(new ZombieSpawnSystem(screen))
            .addSystem(new WalkingSystem)
-           .addSystem(new ZombieEscapingAlertSystem(this.views.ctx.canvas))
-           .addSystem(new BoundingSystem(this.views.ctx.canvas))
+           .addSystem(new ZombieEscapingAlertSystem(screen))
+           .addSystem(new BoundingSystem(screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new ZombieDieSystem)
            .addSystem(new AnimationSystem)

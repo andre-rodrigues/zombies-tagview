@@ -1,4 +1,4 @@
-(function(window, bb) {
+(function(window, bb, Rectangle) {
   "use strict";
 
   // NOTE: Keep the components in alphabetical order
@@ -124,24 +124,8 @@
     }
   });
 
-  window.Spatial = bb.Component.extend({
-    type: "spatial",
-
-    init: function(x, y, width, height) {
-      this.x = x || 0;
-      this.y = y || 0;
-      this.width = width || 20;
-      this.height = height || 20;
-    },
-
-    containsPoint: function(x, y) {
-      var halfWidth = this.width / 2;
-
-      return x <= this.x + halfWidth &&
-             x >= this.x - halfWidth &&
-             y <= this.y + this.height &&
-             y >= this.y;
-    }
+  window.Spatial = Rectangle.extend({
+    type: "spatial"
   });
 
   window.Walking = bb.Component.extend({
@@ -164,4 +148,4 @@
       this.time = time;
     }
   });
-})(window, bb);
+})(window, bb, window.Rectangle);

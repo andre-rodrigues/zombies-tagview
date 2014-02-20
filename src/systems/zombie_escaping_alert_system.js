@@ -13,12 +13,7 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        var spatial = entity.spatial;
-
-        if (spatial.x + spatial.width / 2 < 0 ||
-            spatial.x - spatial.width / 2 > this.alertArea.width ||
-            spatial.y + spatial.height < 0 ||
-            spatial.y > this.alertArea.height) {
+        if (!entity.spatial.intersects(this.alertArea)) {
           this.createAlert(entity.spatial);
         }
       }.bind(this));

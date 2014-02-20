@@ -27,19 +27,16 @@
     },
 
     render: function(entity) {
-      var x = entity.spatial.x,
-          y = entity.spatial.y,
-          width = entity.spatial.width,
-          height = entity.spatial.height,
-          image = this.sprites[entity.renderable.name].data;
+      var image = this.sprites[entity.renderable.name].data;
 
       this.ctx.save();
-      this.ctx.translate(x, y);
+      this.ctx.translate(entity.spatial.center.x, entity.spatial.y);
 
       if (entity.hasComponent("walking") && Math.cos(entity.walking.angle) < 0) {
         this.ctx.scale(-1, 1);
       }
 
+      // TODO: this should not belong here
       if (entity.hasComponent("alertable") && entity.alertable.isRunningOut()) {
         var spatial = entity.spatial;
 
@@ -60,7 +57,7 @@
         this.ctx.globalAlpha = entity.opacity.level;
       }
 
-      this.ctx.drawImage(image, -width / 2, 0);
+      this.ctx.drawImage(image, -spatial.width / 2, 0);
       this.ctx.restore();
     }
   });
