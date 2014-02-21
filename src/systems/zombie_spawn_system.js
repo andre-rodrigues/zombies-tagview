@@ -55,7 +55,7 @@
         zombie.tag("zombie");
 
         var x = 0,
-            y = this.area.height * Math.random();
+            y = (this.area.height - 120) * Math.random();
 
         zombie.addComponent(new Spatial(x, y, 60, 120));
         zombie.addComponent(new Renderable("zombieSpawning"));
