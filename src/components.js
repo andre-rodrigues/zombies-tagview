@@ -116,6 +116,24 @@
     }
   });
 
+  window.Life = bb.Component.extend({
+    type: "life",
+
+    init: function(totalLife) {
+      this.life = totalLife;
+
+      Object.defineProperty(this, "life", {
+        get: function() {
+          return life;
+        }
+      });
+    },
+
+    takeDamage: function(damage) {
+      this.life -= damage;
+    }
+  });
+
   window.Renderable = bb.Component.extend({
     type: "renderable",
 
@@ -148,4 +166,5 @@
       this.time = time;
     }
   });
+
 })(window, bb, window.Rectangle);
