@@ -137,13 +137,13 @@
     },
 
     spawnZombieByType: function(type) {
-      var zombie = this.world.createEntity();
-      zombie.tag("zombie");
+      var zombie = this.world.createEntity().tag("zombie"),
+          width = 100,
+          height = 220,
+          x = - width,
+          y = (this.area.height - height) * Math.random();
 
-      var x = 0,
-          y = (this.area.height - 120) * Math.random();
-
-      zombie.addComponent(new Spatial(x, y, 60, 120));
+      zombie.addComponent(new Spatial(x, y, width, height));
       zombie.addComponent(new Renderable("zombieSpawning"));
       zombie.addComponent(new ZombieSpawning(2100));
       zombie.addComponent(new Animation([
