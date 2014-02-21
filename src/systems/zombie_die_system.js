@@ -8,7 +8,11 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        if (entity.clickable.isClicked) || (entity.life <= 0) {
+        if (entity.clickable.isClicked) {
+          entity.life.takeDamage(6);
+        }
+
+        if (entity.life.life <= 0) {
           entity.removeComponent("clickable");
           entity.removeComponent("walking");
 

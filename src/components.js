@@ -121,12 +121,6 @@
 
     init: function(totalLife) {
       this.life = totalLife;
-
-      Object.defineProperty(this, "life", {
-        get: function() {
-          return life;
-        }
-      });
     },
 
     takeDamage: function(damage) {
