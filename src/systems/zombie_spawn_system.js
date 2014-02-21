@@ -42,8 +42,7 @@
             "zombieWalking17",
             "zombieWalking18",
             "zombieWalking19",
-            "zombieWalking20",
-            "zombieWalking21"
+            "zombieWalking20"
           ];
           entity.animation.frameTime = 50;
 
