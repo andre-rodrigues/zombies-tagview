@@ -4,31 +4,30 @@ body, html {
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	background-color: #000000;
-	font-family: Arial, Verdana;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  font-family: Arial, Verdana;
   background-image: url("background.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-repeat: repeat;
 }
 
 #score {
-	position: absolute;
-	color: white;
-	font-size: 24px;
+  position: absolute;
+  color: white;
+  font-size: 24px;
 }
 
 .start-game {
-	position: absolute;
-	color: #FFFFFF;
-	font-size: 32px;
-	text-decoration: none;
-	top: 50%;
-	left: 50%;
-	margin-left: -82px;
+  position: absolute;
+  color: #FFFFFF;
+  font-size: 32px;
+  text-decoration: none;
+  top: 50%;
+  left: 50%;
+  margin-left: -82px;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
