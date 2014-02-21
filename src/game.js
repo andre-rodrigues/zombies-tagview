@@ -70,8 +70,15 @@
         this.views.ctx.canvas.height
       );
 
+      var waves = [
+        new Wave(1000 * 60 * 5, {
+          zombie1: 50,
+          zombie2: 30
+        })
+      ];
+
       world.addSystem(new ExpirationSystem)
-           .addSystem(new ZombieSpawnSystem(screen))
+           .addSystem(new ZombieSpawnSystem(screen, waves))
            .addSystem(new WalkingSystem)
            .addSystem(new ZombieEscapingAlertSystem(screen))
            .addSystem(new BoundingSystem(screen))
