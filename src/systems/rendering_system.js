@@ -27,10 +27,11 @@
     },
 
     render: function(entity) {
-      var image = this.sprites[entity.renderable.name].data;
+      var image = this.sprites[entity.renderable.name].data,
+          spatial = entity.spatial;
 
       this.ctx.save();
-      this.ctx.translate(entity.spatial.center.x, entity.spatial.y);
+      this.ctx.translate(spatial.center.x, spatial.y);
 
       if (entity.hasComponent("walking") && Math.cos(entity.walking.angle) < 0) {
         this.ctx.scale(-1, 1);
@@ -38,18 +39,17 @@
 
       // TODO: this should not belong here
       if (entity.hasComponent("alertable") && entity.alertable.isRunningOut()) {
-        var spatial = entity.spatial;
 
         if (spatial.x + spatial.width / 2 < 0) {
-          entity.spatial.x += 60;
+          spatial.x += 60;
         } else if (spatial.x - spatial.width / 2 > this.ctx.canvas.width) {
-          entity.spatial.x -= 100;
+          spatial.x -= 100;
         }
 
         if (spatial.y + spatial.height < 0) {
-          entity.spatial.y += 120;
+          spatial.y += 120;
         } else if (spatial.y > this.ctx.canvas.height) {
-          entity.spatial.y -= 30;
+          spatial.y -= 30;
         }
       }
 
