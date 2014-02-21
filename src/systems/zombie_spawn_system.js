@@ -19,6 +19,7 @@
           entity.removeComponent("zombieSpawning");
 
           var angle = 0;
+          entity.addComponent(new Life(10));
           entity.addComponent(new Walking(angle));
           entity.addComponent(new Clickable);
 
