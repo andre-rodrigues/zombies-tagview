@@ -18,7 +18,7 @@
         if (entity.zombieSpawning.time <= 0) {
           entity.removeComponent("zombieSpawning");
 
-          var angle = Math.random() * 360;
+          var angle = 0;
           entity.addComponent(new Walking(angle));
           entity.addComponent(new Clickable);
 
@@ -54,7 +54,7 @@
         var zombie = this.world.createEntity();
         zombie.tag("zombie");
 
-        var x = this.area.width * Math.random(),
+        var x = 0,
             y = this.area.height * Math.random();
 
         zombie.addComponent(new Spatial(x, y, 60, 120));
