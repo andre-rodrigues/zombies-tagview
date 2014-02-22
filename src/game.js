@@ -74,7 +74,6 @@
       world.addSystem(new ExpirationSystem)
            .addSystem(new ZombieSpawnSystem(world.screen, waves))
            .addSystem(new WalkingSystem)
-           .addSystem(new ZombieEscapingAlertSystem(world.screen))
            .addSystem(new BoundingSystem(world.screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new ZombieDieSystem)

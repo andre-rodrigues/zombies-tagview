@@ -45,22 +45,6 @@
         this.ctx.scale(-1, 1);
       }
 
-      // TODO: this should not belong here
-      if (entity.hasComponent("alertable") && entity.alertable.isRunningOut()) {
-
-        if (spatial.x + spatial.width / 2 < 0) {
-          spatial.x += 60;
-        } else if (spatial.x - spatial.width / 2 > this.ctx.canvas.width) {
-          spatial.x -= 100;
-        }
-
-        if (spatial.y + spatial.height < 0) {
-          spatial.y += 120;
-        } else if (spatial.y > this.ctx.canvas.height) {
-          spatial.y -= 30;
-        }
-      }
-
       if (entity.hasComponent("opacity")) {
         this.ctx.globalAlpha = entity.opacity.level;
       }
