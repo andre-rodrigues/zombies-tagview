@@ -132,6 +132,7 @@
     type: "renderable",
 
     init: function(name) {
+      if (!name) throw "You must specify the name of the image to be rendered";
       this.name = name;
     }
   });

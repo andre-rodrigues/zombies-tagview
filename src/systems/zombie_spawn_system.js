@@ -116,7 +116,7 @@
       zombie.addComponent(new Spatial(x, y, width, height));
       zombie.addComponent(new Walking);
       zombie.addComponent(new ZombieSpawning);
-      zombie.addComponent(new Renderable);
+      zombie.addComponent(new Renderable("zombieWalking01"));
       zombie.addComponent(new Animation([
         "zombieWalking01",
         "zombieWalking02",
