@@ -8,12 +8,6 @@
       this.loader = new bb.Loader;
 
       this.sprites = {
-        zombieSpawning01: new bb.Image("assets/zombie_rising_1.png"),
-        zombieSpawning02: new bb.Image("assets/zombie_rising_2.png"),
-        zombieSpawning03: new bb.Image("assets/zombie_rising_3.png"),
-        zombieSpawning04: new bb.Image("assets/zombie_rising_4.png"),
-        zombieSpawning05: new bb.Image("assets/zombie_rising_5.png"),
-
         zombieWalking01: new bb.Image("assets/zombie-01/skeleton-walk500.png"),
         zombieWalking02: new bb.Image("assets/zombie-01/skeleton-walk501.png"),
         zombieWalking03: new bb.Image("assets/zombie-01/skeleton-walk502.png"),
@@ -63,7 +57,7 @@
     reset: function() {
       var world = new bb.World;
 
-      var screen = new Rectangle(
+      world.screen = new Rectangle(
         this.views.ctx.canvas.offsetLeft,
         this.views.ctx.canvas.offsetTop,
         this.views.ctx.canvas.width,
@@ -78,10 +72,10 @@
       ];
 
       world.addSystem(new ExpirationSystem)
-           .addSystem(new ZombieSpawnSystem(screen, waves))
+           .addSystem(new ZombieSpawnSystem(world.screen, waves))
            .addSystem(new WalkingSystem)
-           .addSystem(new ZombieEscapingAlertSystem(screen))
-           .addSystem(new BoundingSystem(screen))
+           .addSystem(new ZombieEscapingAlertSystem(world.screen))
+           .addSystem(new BoundingSystem(world.screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new ZombieDieSystem)
            .addSystem(new AnimationSystem)

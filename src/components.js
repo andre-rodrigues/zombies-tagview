@@ -144,7 +144,7 @@
     type: "walking",
 
     init: function(angle, velocity) {
-      this.angle = angle;
+      this.angle = angle || 0;
       this.velocity = velocity || Math.random() * 20 + 20;
     }
   });
@@ -154,11 +154,7 @@
   });
 
   window.ZombieSpawning = bb.Component.extend({
-    type: "zombieSpawning",
-
-    init: function(time) {
-      this.time = time;
-    }
+    type: "zombieSpawning"
   });
 
 })(window, bb, window.Rectangle);
