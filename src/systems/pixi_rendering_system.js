@@ -27,7 +27,8 @@
 
     onEntityAdd: function(entity) {
       var sprite = new PIXI.Sprite(this.textures[entity.renderable.name]);
-      sprite.anchor.x = sprite.anchor.y = 0.5;
+      sprite.anchor.x = 0.5;
+      sprite.anchor.y = 0;
 
       this.container.addChild(sprite);
 
