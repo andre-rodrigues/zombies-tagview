@@ -1,6 +1,11 @@
 (function(window, bb) {
   "use strict";
 
+  var fpsMeter = new FPSMeter({
+    graph: true,
+    history: 30
+  });
+
   window.Game = bb.Class.extend({
     init: function(views) {
       this.views = views;
@@ -87,6 +92,7 @@
       this.runner.onTick = function(deltaTime) {
         world.deltaTime = deltaTime;
         world.process();
+        fpsMeter.tick();
       }
 
       this.start();
