@@ -17,6 +17,8 @@
         this.textures[name] = new PIXI.Texture(new PIXI.BaseTexture(images[name].data));
       }
 
+      this.container = new PIXI.SpriteBatch;
+      this.stage.addChild(this.container);
     },
 
     allowEntity: function(entity) {
@@ -27,7 +29,7 @@
       var sprite = new PIXI.Sprite(this.textures[entity.renderable.name]);
       sprite.anchor.x = sprite.anchor.y = 0.5;
 
-      this.stage.addChild(sprite);
+      this.container.addChild(sprite);
 
       this.sprites[entity.id] = sprite;
     },
@@ -44,13 +46,14 @@
             return entityA.spatial.y - entityB.spatial.y;
           })
           .forEach(this.render, this);
+
       this.renderer.render(this.stage);
     },
 
     render: function(entity, index) {
       var sprite = this.sprites[entity.id];
 
-      this.stage.addChildAt(sprite, index);
+      this.container.addChildAt(sprite, index);
 
       sprite.setTexture(this.textures[entity.renderable.name]);
 
