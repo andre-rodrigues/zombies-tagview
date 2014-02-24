@@ -119,12 +119,20 @@
   window.Life = bb.Component.extend({
     type: "life",
 
-    init: function(totalLife) {
-      this.life = totalLife;
+    init: function(health) {
+      this.health = health;
     },
 
     takeDamage: function(damage) {
-      this.life -= damage;
+      this.health -= damage;
+    },
+
+    isAlive: function() {
+      return this.health > 0;
+    },
+
+    isDead: function() {
+      return !this.isAlive();
     }
   });
 

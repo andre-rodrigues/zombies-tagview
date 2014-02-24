@@ -12,7 +12,7 @@
           entity.life.takeDamage(6);
         }
 
-        if (entity.life.life <= 0) {
+        if (entity.life.isDead()) {
           entity.removeComponent("clickable");
           entity.removeComponent("walking");
 
