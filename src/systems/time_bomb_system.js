@@ -11,7 +11,6 @@
     process: function() {
       this.entities.forEach(function(entity) {
         if (entity.countdown.isOver()) {
-          entity.addComponent(new Collidable);
           entity.addComponent(new Explosion(entity.bomb.radius, entity.bomb.damage));
           entity.addComponent(new Renderable("explosion"));
           entity.addComponent(new Expire(1 * 1000));
