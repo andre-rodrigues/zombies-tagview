@@ -36,7 +36,7 @@
     },
 
     onEntityRemoval: function(entity) {
-      this.stage.removeChild(this.sprites[entity.id]);
+      this.container.removeChild(this.sprites[entity.id]);
       delete this.sprites[entity.id];
     },
 
