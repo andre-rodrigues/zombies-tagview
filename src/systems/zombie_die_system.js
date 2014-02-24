@@ -3,18 +3,21 @@
 
   window.ZombieDieSystem = bb.System.extend({
     allowEntity: function(entity) {
-      return entity.hasComponent("clickable") && entity.hasTag("zombie");
+      return entity.hasTag("zombie") && entity.hasComponent("life");
     },
 
     process: function() {
       this.entities.forEach(function(entity) {
-        if (entity.clickable.isClicked) {
+        if (entity.hasComponent("clickable") && entity.clickable.isClicked) {
           entity.life.takeDamage(6);
         }
 
         if (entity.life.isDead()) {
-          entity.removeComponent("clickable");
-          entity.removeComponent("walking");
+          if (entity.hasComponent("clickable")) entity.removeComponent("clickable");
+          if (entity.hasComponent("walking")) entity.removeComponent("walking");
+          if (entity.hasComponent("hittable")) entity.removeComponent("hittable");
+
+          entity.removeComponent("life");
 
           entity.addComponent(new ZombieDying);
 

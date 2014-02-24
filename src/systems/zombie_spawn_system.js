@@ -85,7 +85,7 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        if (entity.spatial.intersects(this.world.screen.left)) {
+        if (entity.spatial.intersects(this.world.screen)) {
           entity.removeComponent("zombieSpawning");
           entity.addComponent(new Life(10));
           entity.addComponent(new Clickable);
@@ -115,6 +115,7 @@
 
       zombie.addComponent(new Spatial(x, y, width, height));
       zombie.addComponent(new Walking);
+      zombie.addComponent(new Hittable);
       zombie.addComponent(new ZombieSpawning);
       zombie.addComponent(new Renderable("zombieWalking01"));
       zombie.addComponent(new Animation([

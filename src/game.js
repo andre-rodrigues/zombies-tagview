@@ -41,7 +41,8 @@
         zombieDying05: new bb.Image("assets/zombie_dying_5.png"),
         zombieDying06: new bb.Image("assets/zombie_dying_6.png"),
 
-        alertable: new bb.Image("assets/runningOut.png")
+        bomb: new bb.Image("assets/bomb.png"),
+        explosion: new bb.Image("assets/explosion.png")
       };
 
       for (var sprite in this.sprites) {
@@ -77,7 +78,10 @@
       ];
 
       world.addSystem(new ExpirationSystem)
+           .addSystem(new CountdownSystem)
            .addSystem(new ZombieSpawnSystem(world.screen, waves))
+           .addSystem(new TimeBombSystem)
+           .addSystem(new ExplosionSystem)
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(world.screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))

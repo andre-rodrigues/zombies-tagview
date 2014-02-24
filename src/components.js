@@ -84,6 +84,15 @@
     }
   });
 
+  window.Bomb = bb.Component.extend({
+    type: "bomb",
+
+    init: function(radius, damage) {
+      this.radius = radius;
+      this.damage = damage || Infinity;
+    }
+  });
+
   window.BoundaryRemovable = bb.Component.extend({
     type: "boundaryRemovable"
   });
@@ -93,6 +102,25 @@
 
     init: function() {
       this.isClicked = false;
+    }
+  });
+
+  window.Countdown = bb.Class.extend({
+    type: "countdown",
+
+    init: function(time) {
+      if (time == null || time < 0)
+        throw "You must inform a positive time to the Countdown component";
+      this.time = time;
+      this.elapsetTime = 0;
+    },
+
+    tick: function(time) {
+      this.elapsetTime += time;
+    },
+
+    isOver: function() {
+      return this.elapsetTime >= this.time;
     }
   });
 
@@ -106,6 +134,19 @@
     isExpired: function() {
       return this.lifetime <= 0;
     }
+  });
+
+  window.Explosion = bb.Component.extend({
+    type: "explosion",
+
+    init: function(radius, damage) {
+      this.radius = radius;
+      this.damage = damage;
+    }
+  });
+
+  window.Hittable = bb.Component.extend({
+    type: "hittable"
   });
 
   window.Opacity = bb.Component.extend({
