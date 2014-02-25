@@ -1,7 +1,7 @@
 (function(window, bb){
   "use strict";
 
-  var ZOMBIE_KILL_SCORE = 20;
+  var ZOMBIE_KILL_SCORE = 1;
 
   window.ScoreCountSystem = bb.System.extend({
     init: function(scoreView) {

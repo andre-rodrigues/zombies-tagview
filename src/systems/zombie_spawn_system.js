@@ -110,11 +110,14 @@
       var zombie = this.world.createEntity().tag("zombie"),
           width = 100,
           height = 220,
-          x = - width,
-          y = (this.area.height - height) * Math.random();
+          // x = - width,
+          // y = (this.area.height - height) * Math.random();
+          x = (this.area.width - width) * Math.random(),
+          y = this.area.height;
 
+      var angle = Math.atan2( -1 * (y - 0), (this.area.width / 2) - x);
       zombie.addComponent(new Spatial(x, y, width, height));
-      zombie.addComponent(new Walking);
+      zombie.addComponent(new Walking(angle));
       zombie.addComponent(new Hittable);
       zombie.addComponent(new ZombieSpawning);
       zombie.addComponent(new Renderable("zombieWalking01"));
