@@ -21,15 +21,13 @@
 
           entity.addComponent(new ZombieDying);
 
-          entity.animation.sprites = [
-            "zombieDying01",
-            "zombieDying02",
-            "zombieDying03",
-            "zombieDying04",
-            "zombieDying05",
-            "zombieDying06"
-          ];
-          entity.animation.frameTime = 150;
+          entity.animation.sprites = [];
+
+          for (var i = 1; i <= 48; i++) {
+            entity.animation.sprites.push("zombieDying" + i);
+          }
+
+          entity.animation.frameTime = 50;
           entity.animation.repeat = 0;
 
           entity.addComponent(new Expire(entity.animation.totalTime));
