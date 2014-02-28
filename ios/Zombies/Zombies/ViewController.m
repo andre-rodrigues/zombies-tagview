@@ -18,12 +18,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    NSString *strUrl = @"http://192.168.1.5:5000";
-    NSURL *url = [NSURL URLWithString:strUrl];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_viewWeb loadRequest:request];
-    
 }
 
 - (void)didReceiveMemoryWarning
