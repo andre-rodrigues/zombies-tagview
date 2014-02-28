@@ -23,9 +23,8 @@ public class MainActivity extends Activity {
         
     	webView = (WebView) findViewById(R.id.webView1);
     	
-    	WebSettings webSettings = webView.getSettings();
-    	webSettings.setJavaScriptEnabled(true);
+    	webView.getSettings().setJavaScriptEnabled(true);
     	
-    	webView.loadUrl(SERVER_URL);
+    	webView.loadUrl("file:///android_asset/index.html");
     }
 }
