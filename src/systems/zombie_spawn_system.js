@@ -107,17 +107,37 @@
     },
 
     spawnZombieByType: function(type) {
-      var zombie = this.world.createEntity().tag("zombie"),
-          width = 100,
-          height = 220,
-          // x = - width,
-          // y = (this.area.height - height) * Math.random();
-          x = (this.area.width - width) * Math.random(),
-          y = this.area.height;
+      var ZOMBIE_WIDTH = 170;
+      var ZOMBIE_HEIGHT = 266;
 
-      var angle = Math.atan2( -1 * (y - 0), (this.area.width / 2) - x);
+      function zombieSpawnPosition(area) {
+        // TODO: alter this to gameOverPosition
+        var GOAL_POSITION = { x: area.width / 2, y: area.height / 2 };
+        
+        // zombie walking angle
+        var randAngle = Math.random() * Math.PI;
+        var yDistance = area.height - GOAL_POSITION.y;
+        var xDistance = GOAL_POSITION.x;
+        // pitagoras
+        var hypotenuse = Math.sqrt( Math.pow(xDistance, 2) + Math.pow(yDistance, 2) );
+        return {
+          x: (Math.cos(randAngle) * hypotenuse) + GOAL_POSITION.x, 
+          y: (Math.sin(randAngle) * hypotenuse) + GOAL_POSITION.y
+        }
+      }
+
+      var zombiePosition = zombieSpawnPosition(this.area);
+      var zombie = this.world.createEntity().tag("zombie"),
+          width = ZOMBIE_WIDTH,
+          height = ZOMBIE_HEIGHT,
+          x = zombiePosition.x,
+          y = zombiePosition.y;
+
+      // TODO: move this formula to walking_system      
+      var angle = Math.atan2( -1 * (zombiePosition.y - 0), (this.area.width / 2) - zombiePosition.x);
+
       zombie.addComponent(new Spatial(x, y, width, height));
-      zombie.addComponent(new Walking(angle));
+      zombie.addComponent(new Walking(angle, 80));
       zombie.addComponent(new Hittable);
       zombie.addComponent(new ZombieSpawning);
       zombie.addComponent(new Renderable("zombieWalking01"));

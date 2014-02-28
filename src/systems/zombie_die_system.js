@@ -9,7 +9,7 @@
     process: function() {
       this.entities.forEach(function(entity) {
         if (entity.hasComponent("clickable") && entity.clickable.isClicked) {
-          entity.life.takeDamage(6);
+          entity.life.takeDamage(10);
         }
 
         if (entity.life.isDead()) {

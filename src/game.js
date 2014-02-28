@@ -80,16 +80,13 @@
       world.addSystem(new ExpirationSystem)
            .addSystem(new CountdownSystem)
            .addSystem(new ZombieSpawnSystem(world.screen, waves))
-           .addSystem(new TimeBombSystem)
-           .addSystem(new ExplosionSystem)
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(world.screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new ZombieDieSystem)
            .addSystem(new AnimationSystem)
            .addSystem(new ScoreCountSystem(this.views.score))
-           .addSystem(new BlinkSystem)
-           .addSystem(new PIXI.RenderingSystem(this.views.ctx, this.sprites));
+           .addSystem(new RenderingSystem(this.views.ctx, this.sprites));
 
       this.pause();
 
