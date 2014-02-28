@@ -153,36 +153,6 @@ body {
   background-size: 1000%;
 }
 
-#score_unit {
-  top: 1%;
-  left: 1%;
-  width: 2%;
-
-  background-image: url("numbers.png");
-  background-repeat: no-repeat;
-  background-size: 1000%;
-}
-
-#score_decimal {
-  top: 1%;
-  left: 3%;
-  width: 2%;
-
-  background-image: url("numbers.png");
-  background-repeat: no-repeat;
-  background-size: 1000%;
-}
-
-#score_hundred {
-  top: 1%;
-  left: 5%;
-  width: 2%;
-
-  background-image: url("numbers.png");
-  background-repeat: no-repeat;
-  background-size: 1000%;
-}
-
 .n0 {
   background-position-x: 0%;
   background-position-y: 100%;
