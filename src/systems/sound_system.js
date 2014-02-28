@@ -59,6 +59,7 @@
 
         if (soundConfig.removeOnEnd) {
           sound.data.addEventListener("ended", function onEnd() {
+            entity.removeComponent("sound");
             entity.remove();
             sound.data.removeEventListener("ended", onEnd);
           });
