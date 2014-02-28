@@ -28,7 +28,7 @@
       <div id="decimal"></div>
       <div id="hundred"></div>
     </div>
-    
+
     <div id="title">
       <img src="assets/title.png" id="title-img" />
     </div>
@@ -36,6 +36,8 @@
     <div id="start_game_container">
       <img src="assets/new_game.png" id="new-game" />
     </div>
+
+    <audio id="title_screen_audio" preload="auto" src="assets/sounds/title_screen.ogg" autoplay="autoplay" />
 
     <script src="lib/jquery-2.1.0.js" type="text/javascript"></script>
     <script src="lib/pixi.js" type="text/javascript"></script>
@@ -64,6 +66,7 @@
     <script type="text/javascript">
       jQuery( function($) {
         $("#new-game").on('click', function() {
+          $("#title_screen_audio")[0].pause();
           startGame();
         });
       });
@@ -90,7 +93,7 @@
       }
 
       function printScore(score) {
-        
+
         // returns the backgroundPosition
         function getPosition(number) {
           return "n" + Math.floor(number % 10);
