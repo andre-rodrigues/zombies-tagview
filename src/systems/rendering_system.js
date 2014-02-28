@@ -41,7 +41,7 @@
       this.ctx.save();
       this.ctx.translate(spatial.center.x, spatial.y);
 
-      if (entity.hasComponent("walking") && Math.cos(entity.walking.angle) < 0) {
+      if (entity.hasTag("zombie") && entity.spatial.center.x > this.ctx.canvas.width / 2) {
         this.ctx.scale(-1, 1);
       }
 
