@@ -191,7 +191,7 @@
 
     init: function(name, loop, volume, removeOnEnd) {
       this.name = name;
-      this.loop = loop;
+      this.loop = !!loop;
       this.volume = volume || 1;
 
       this.removeOnEnd = !!removeOnEnd || true;
