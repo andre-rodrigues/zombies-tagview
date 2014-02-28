@@ -13,10 +13,6 @@
       <img src="assets/background.jpg" />
     </div>
 
-    <div id="game_start">
-      <a onclick="startGame();" href="#" class="start-game">Iniciar Jogo</a>
-    </div>
-
     <div id="game" class="hidden">
       <div id="score" class="score" unselectable="on" onselectstart="return false;"
         onmousedown="return false;"></div>
@@ -26,6 +22,13 @@
     <div id="graves" unselectable="on" onselectstart="return false;"
         onmousedown="return false;"></div>
 
+    <div id="game_over_container" class="hidden">
+      <img src="assets/game_over.png" id="game_over_art">
+      <div id="unit"></div>
+      <div id="decimal"></div>
+      <div id="hundred"></div>
+    </div>
+    
     <div id="title">
       <img src="assets/title.png" id="title-img" />
     </div>
@@ -78,11 +81,34 @@
       adjustCanvas();
 
       function startGame() {
-        document.getElementById("game_start").remove();
         document.getElementById("game").setAttribute("class", "");
         document.getElementById("start_game_container").setAttribute("class", "hidden");
         document.getElementById("title").setAttribute("class", "hidden");
         var game = new Game(views);
+      }
+
+      function printScore(score) {
+        
+        // returns the backgroundPosition
+        function getPosition(number) {
+          return "n" + Math.floor(number % 10);
+        }
+
+        var klass;
+
+        klass = getPosition(score);
+        document.getElementById("unit").setAttribute("class", klass);
+
+        // removes the units
+        score /= 10;
+        klass = getPosition(score);
+        document.getElementById("decimal").setAttribute("class", klass);
+        // removes the decimals
+        score /= 10
+        klass = getPosition(score);
+        document.getElementById("hundred").setAttribute("class", klass);
+
+        document.getElementById("game_over_container").setAttribute("class", "");
       }
     </script>
   </body>

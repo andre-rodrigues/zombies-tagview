@@ -110,3 +110,126 @@ body {
   right: 0;
   margin: auto;
 }
+
+#game_over_art {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  vertical-align: middle;
+  height: inherit;
+  width: 77%;
+  height: auto;
+}
+
+#unit {
+  top: -36%;
+  left: 52%;
+  width: 8%;
+
+  background-image: url("numbers.png");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+}
+
+#decimal {
+  top: -36%;
+  left: 44%;
+  width: 8%;
+
+  background-image: url("numbers.png");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+}
+
+#hundred {
+  top: -36%;
+  left: 36%;
+  width: 8%;
+
+  background-image: url("numbers.png");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+}
+
+#score_unit {
+  top: 1%;
+  left: 1%;
+  width: 2%;
+
+  background-image: url("numbers.png");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+}
+
+#score_decimal {
+  top: 1%;
+  left: 3%;
+  width: 2%;
+
+  background-image: url("numbers.png");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+}
+
+#score_hundred {
+  top: 1%;
+  left: 5%;
+  width: 2%;
+
+  background-image: url("numbers.png");
+  background-repeat: no-repeat;
+  background-size: 1000%;
+}
+
+.n0 {
+  background-position-x: 0%;
+  background-position-y: 100%;
+}
+
+.n1 {
+  background-position-x: 10%;
+  background-position-y: 100%;
+
+}
+
+.n2 {
+  background-position-x: 20%;
+  background-position-y: 100%;
+}
+
+.n3 {
+  background-position-x: 31%;
+  background-position-y: 100%;
+}
+
+.n4 {
+  background-position-x: 43%;
+  background-position-y: 100%;
+}
+
+.n5 {
+  background-position-x: 54%;
+  background-position-y: 100%;
+}
+
+.n6 {
+  background-position-x: 65%;
+  background-position-y: 100%;
+}
+
+.n7 {
+  background-position-x: 77%;
+  background-position-y: 100%;
+}
+
+.n8 {
+  background-position-x: 88%;
+  background-position-y: 100%;
+}
+
+.n9 {
+  background-position-x: 100%;
+  background-position-y: 100%;
+}
