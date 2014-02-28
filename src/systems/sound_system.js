@@ -49,8 +49,7 @@
             sound = this.sounds[soundConfig.name];
 
         sound.volume = soundConfig.volume;
-        sound.loop = soundConfig.loop;
-        sound.play();
+        sound.play(soundConfig.loop);
 
         this.playing[bb.objectId(entity)] = {
           sound: sound,

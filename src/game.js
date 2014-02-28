@@ -174,7 +174,7 @@
 
 
       // Gameplay looping sound
-      this.sounds.gameplay.loop = true;
+      this.sounds.gameplay.data.loop = true;
       this.sounds.gameplay.play();
 
       this.start();
