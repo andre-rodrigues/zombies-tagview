@@ -127,15 +127,8 @@
         this.views.ctx.canvas.height
       );
 
-      var waves = [
-        new Wave(1000 * 60 * 5, {
-          zombie1: 5,
-          zombie2: 3
-        })
-      ];
-
       var damageAreaSystem = new HumanDamageAreaSystem;
-      var zombieSpawnSystem = new ZombieSpawnSystem(world.screen, waves);
+      var zombieSpawnSystem = new ZombieSpawnSystem(world.screen);
 
       world.addSystem(new ExpirationSystem)
            .addSystem(new CountdownSystem)
