@@ -95,7 +95,9 @@
         zombieDying4: new bb.Sound("assets/sounds/dying4.wav"),
         zombieDying5: new bb.Sound("assets/sounds/dying5.wav"),
         zombieDying6: new bb.Sound("assets/sounds/dying6.wav"),
-        zombieDying7: new bb.Sound("assets/sounds/dying7.wav")
+        zombieDying7: new bb.Sound("assets/sounds/dying7.wav"),
+
+        gameplay: new bb.Sound("assets/sounds/gameplay.ogg")
       };
 
       for (var sprite in this.sprites) {
@@ -114,6 +116,7 @@
     },
 
     pause: function() {
+      this.sounds.gameplay.stop();
       this.runner.stop();
     },
 
@@ -168,6 +171,11 @@
 
       damageAreaSystem.endPoint = littleGirl.spatial;
       zombieSpawnSystem.goPoint = littleGirl.spatial;
+
+
+      // Gameplay looping sound
+      this.sounds.gameplay.loop = true;
+      this.sounds.gameplay.play();
 
       this.start();
     }
