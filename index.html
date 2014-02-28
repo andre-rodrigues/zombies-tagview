@@ -13,11 +13,13 @@
       <img src="assets/background.jpg" />
     </div>
 
+    <div id="game_start">
+      <a onclick="startGame();" href="#" class="start-game">Iniciar Jogo</a>
+    </div>
+
     <div id="game" class="hidden">
       <div id="score" class="score" unselectable="on" onselectstart="return false;"
         onmousedown="return false;"></div>
-    <div id="game">
-      <div id="score"></div>
       <canvas id="zombies"></canvas>
     </div>
 
