@@ -84,7 +84,8 @@
         zombieDying48: new bb.Image("assets/zombie-01-dying/skeleton-dying305.png"),
 
         bomb: new bb.Image("assets/bomb.png"),
-        explosion: new bb.Image("assets/explosion.png")
+        explosion: new bb.Image("assets/explosion.png"),
+        littleGirl: new bb.Image("assets/human-01.png")
       };
 
       this.sounds = {
@@ -136,6 +137,7 @@
            .addSystem(new AnimationSystem)
            .addSystem(new SoundSystem(this.sounds))
            .addSystem(new ScoreCountSystem(this.views.score))
+           .addSystem(new HumanSystem)
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites));
 
       this.pause();
@@ -145,6 +147,20 @@
         world.process();
         fpsMeter.tick();
       }
+
+      var littleGirl = world.createEntity();
+
+      littleGirl.image = {
+        width: 106,
+        height: 189
+      }
+
+      var width = world.screen.width / 2 - littleGirl.image.width / 2;
+      var height = (50/768 * world.screen.height) - 30
+
+      littleGirl.addComponent(new Human(10))
+      littleGirl.addComponent(new Spatial(width, height, 106, 189));
+      littleGirl.addComponent(new Renderable("littleGirl"));
 
       this.start();
     }

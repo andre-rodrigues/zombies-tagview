@@ -219,4 +219,8 @@
     type: "zombieSpawning"
   });
 
+  window.Human = bb.Component.extend({
+    type: "human"
+  });
+
 })(window, bb, window.Rectangle);
