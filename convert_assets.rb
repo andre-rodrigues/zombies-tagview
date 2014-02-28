@@ -10,5 +10,5 @@ Dir["./assets/raw/**/*.png"].map do |file|
 
   FileUtils.mkdir_p "./assets/#{folder}"
 
-  system "convert #{file} -resize 50x50% #{new_path}"
+  system "convert #{file} -resize 25x25% #{new_path}"
 end
