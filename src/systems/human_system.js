@@ -13,7 +13,7 @@
 
     process: function() {
       this.entities.forEach(function(entity) {
-        // console.log(entity.spatial.x + " - " + entity.spatial.y);
+        // Do something
       });
     }
   });

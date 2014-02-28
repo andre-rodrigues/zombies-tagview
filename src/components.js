@@ -223,4 +223,8 @@
     type: "human"
   });
 
+  window.DamageOnHuman = bb.Component.extend({
+    type: "damage"
+  });
+
 })(window, bb, window.Rectangle);

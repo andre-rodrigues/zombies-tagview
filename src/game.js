@@ -127,9 +127,19 @@
         this.views.ctx.canvas.height
       );
 
+      var waves = [
+        new Wave(1000 * 60 * 5, {
+          zombie1: 5,
+          zombie2: 3
+        })
+      ];
+
+      var damageAreaSystem = new HumanDamageAreaSystem;
+      var zombieSpawnSystem = new ZombieSpawnSystem(world.screen, waves);
+
       world.addSystem(new ExpirationSystem)
            .addSystem(new CountdownSystem)
-           .addSystem(new ZombieSpawnSystem(world.screen))
+           .addSystem(zombieSpawnSystem)
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(world.screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
@@ -138,6 +148,7 @@
            .addSystem(new SoundSystem(this.sounds))
            .addSystem(new ScoreCountSystem(this.views.score))
            .addSystem(new HumanSystem)
+           .addSystem(damageAreaSystem)
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites));
 
       this.pause();
@@ -156,11 +167,14 @@
       }
 
       var width = world.screen.width / 2 - littleGirl.image.width / 2;
-      var height = (50/768 * world.screen.height) - 30
+      var height = (106/768 * $("#gameBackground img").height()) - 30;
 
-      littleGirl.addComponent(new Human(10))
+      littleGirl.addComponent(new Human(10));
       littleGirl.addComponent(new Spatial(width, height, 106, 189));
       littleGirl.addComponent(new Renderable("littleGirl"));
+
+      damageAreaSystem.endPoint = littleGirl.spatial;
+      zombieSpawnSystem.goPoint = littleGirl.spatial;
 
       this.start();
     }

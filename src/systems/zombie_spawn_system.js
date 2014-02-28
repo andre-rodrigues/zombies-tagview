@@ -49,10 +49,10 @@
       var ZOMBIE_WIDTH = 170;
       var ZOMBIE_HEIGHT = 266;
 
-      function zombieSpawnPosition(area) {
+      function zombieSpawnPosition(area, goPoint) {
         // TODO: alter this to gameOverPosition
-        var GOAL_POSITION = { x: area.width / 2, y: area.height / 2 };
-
+        var GOAL_POSITION = goPoint;
+        
         // zombie walking angle
         var randAngle = Math.random() * Math.PI;
         var yDistance = area.height - GOAL_POSITION.y;
@@ -65,7 +65,7 @@
         }
       }
 
-      var zombiePosition = zombieSpawnPosition(this.area);
+      var zombiePosition = zombieSpawnPosition(this.area, this.goPoint);
       var zombie = this.world.createEntity().tag("zombie"),
           width = ZOMBIE_WIDTH,
           height = ZOMBIE_HEIGHT,
@@ -78,6 +78,7 @@
       zombie.addComponent(new Spatial(x, y, width, height));
       zombie.addComponent(new Walking(angle, 80));
       zombie.addComponent(new Hittable);
+      zombie.addComponent(new DamageOnHuman);
       zombie.addComponent(new ZombieSpawning);
       zombie.addComponent(new Renderable("zombieWalking01"));
       zombie.addComponent(new Animation([
