@@ -87,8 +87,22 @@
         explosion: new bb.Image("assets/explosion.png")
       };
 
+      this.sounds = {
+        zombieDying1: new bb.Sound("assets/sounds/dying1.wav"),
+        zombieDying2: new bb.Sound("assets/sounds/dying2.wav"),
+        zombieDying3: new bb.Sound("assets/sounds/dying3.wav"),
+        zombieDying4: new bb.Sound("assets/sounds/dying4.wav"),
+        zombieDying5: new bb.Sound("assets/sounds/dying5.wav"),
+        zombieDying6: new bb.Sound("assets/sounds/dying6.wav"),
+        zombieDying7: new bb.Sound("assets/sounds/dying7.wav")
+      };
+
       for (var sprite in this.sprites) {
         this.loader.add(this.sprites[sprite]);
+      }
+
+      for (var sound in this.sounds) {
+        this.loader.add(this.sounds[sound]);
       }
 
       this.loader.load(this.reset.bind(this));
@@ -120,6 +134,7 @@
            .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new ZombieDieSystem)
            .addSystem(new AnimationSystem)
+           .addSystem(new SoundSystem(this.sounds))
            .addSystem(new ScoreCountSystem(this.views.score))
            .addSystem(new RenderingSystem(this.views.ctx, this.sprites));
 

@@ -186,6 +186,18 @@
     }
   });
 
+  window.Sound = bb.Component.extend({
+    type: "sound",
+
+    init: function(name, loop, volume, removeOnEnd) {
+      this.name = name;
+      this.loop = loop;
+      this.volume = volume || 1;
+
+      this.removeOnEnd = !!removeOnEnd || true;
+    }
+  });
+
   window.Spatial = Rectangle.extend({
     type: "spatial"
   });
