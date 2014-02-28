@@ -1,82 +1,16 @@
 (function(window, bb) {
   "use strict";
 
-  window.Wave = bb.Class.extend({
-    /** @class Wave
-     * @constructor
-     * @param {Integer} duration with how long the wave must endure
-     * @param {Object} zombies
-     *    key holding the zombie type and value {Integer} how many of them
-     * @param {Object} weights by zombie type
-     *    key holding the zombie type and value {Integer} weight (min 1, max 10)
-     */
-    init: function(duration, zombies, weights) {
-      this.zombies = zombies;
-      this.duration = duration;
-      this.time = this.duration;
-      this.isFinished = false;
-
-      this.weights = weights || {
-        zombie1: 6,
-        zombie2: 4,
-        zombie3: 2
-      };
-
-      this.buildWeigthedZombies();
-    },
-
-    /**
-     * Spawn zombies when time is right
-     * @method spawn
-     * @param {Integer} deltaTime expressing how long has passed since last iteration
-     * @param {Function} callback to call when a zombie must be spawned
-     *    @param {String} zombieType the type of zombie to spawn
-     */
-    spawn: function(deltaTime, callback) {
-      this.time -= deltaTime;
-
-      if (this.time <= 0) {
-        this.isFinished = true;
-        return;
-      }
-
-      var zombieType;
-      if (Math.random() < 0.05) {
-        zombieType = this.spawnZombieByWeight();
-        return callback(zombieType);
-      }
-    },
-
-    spawnZombieByWeight: function() {
-      return this.weightedZombies.sample();
-    },
-
-    /**
-       * Creates an array with weighted zombie types
-       * @return {Array} weightedZombies
-       *    eg. weighted = { zombie1: 2, zombie2: 1 } => ["zombie1", "zombie1", "zombie2"]
-       */
-    buildWeigthedZombies: function() {
-      var types = [];
-      var allowedTypes = Object.keys(this.zombies).intersect(Object.keys(this.weights));
-
-      allowedTypes.forEach(function(type) {
-        this.weights[type].times(function() {
-          types.push(type);
-        });
-      }, this);
-
-      this.weightedZombies = types;
-    }
-  });
-
   window.ZombieSpawnSystem = bb.System.extend({
-    init: function(area, waves) {
+    init: function(area, slopeIncreaseEvery, spawnEvery, curve) {
       this.parent();
       this.area = area;
-      this.waves = waves;
 
-      this.currentWave = this.waves[0];
+      this.tick = 0;
+      this.slopePoint = 0.2;
+      this.slopeIncreaseEvery = slopeIncreaseEvery || 1500;
+      this.spawnEvery = spawnEvery || 300;
+      this.curve = (curve || this.defaultSpawnCurve).bind(this);
     },
 
     allowEntity: function(entity) {
@@ -93,27 +27,32 @@
         }
       }, this);
 
-      this.currentWave.spawn(this.world.deltaTime, this.spawnZombieByType.bind(this));
+      var toSpawn = Math.floor(this.curve(this.slopePoint) * 10);
 
-      if (this.currentWave.isFinished) {
-        // Next wave
-        var newWaveIndex = this.waves.indexOf(this.currentWave) + 1;
-        if (newWaveIndex < this.waves.length) {
-          this.currentWave = this.waves[newWaveIndex];
-        } else {
-          console.log("LOL game is over, bitch!");
+      this.tick += 1;
+      if (this.tick % this.slopeIncreaseEvery == 0) {
+        this.slopePoint += 0.1;
+      }
+
+      if (this.tick % this.spawnEvery == 0) {
+        for (var i = 0; i < toSpawn; i++) {
+          this.spawn();
         }
       }
     },
 
-    spawnZombieByType: function(type) {
+    defaultSpawnCurve: function(x) {
+      return x / Math.sqrt(1 + Math.pow(x, 2));
+    },
+
+    spawn: function() {
       var ZOMBIE_WIDTH = 170;
       var ZOMBIE_HEIGHT = 266;
 
       function zombieSpawnPosition(area) {
         // TODO: alter this to gameOverPosition
         var GOAL_POSITION = { x: area.width / 2, y: area.height / 2 };
-        
+
         // zombie walking angle
         var randAngle = Math.random() * Math.PI;
         var yDistance = area.height - GOAL_POSITION.y;
@@ -121,7 +60,7 @@
         // pitagoras
         var hypotenuse = Math.sqrt( Math.pow(xDistance, 2) + Math.pow(yDistance, 2) );
         return {
-          x: (Math.cos(randAngle) * hypotenuse) + GOAL_POSITION.x, 
+          x: (Math.cos(randAngle) * hypotenuse) + GOAL_POSITION.x,
           y: (Math.sin(randAngle) * hypotenuse) + GOAL_POSITION.y
         }
       }
@@ -133,7 +72,7 @@
           x = zombiePosition.x,
           y = zombiePosition.y;
 
-      // TODO: move this formula to walking_system      
+      // TODO: move this formula to walking_system
       var angle = Math.atan2( -1 * (zombiePosition.y - 0), (this.area.width / 2) - zombiePosition.x);
 
       zombie.addComponent(new Spatial(x, y, width, height));
