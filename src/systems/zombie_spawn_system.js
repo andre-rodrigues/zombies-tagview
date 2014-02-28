@@ -7,7 +7,8 @@
       this.area = area;
 
       this.tick = 0;
-      this.slopePoint = 0.2;
+      this.initialSlopePoint = 0.2;
+      this.slopePoint = this.initialSlopePoint;
       this.slopeIncreaseEvery = slopeIncreaseEvery || 1500;
       this.spawnEvery = spawnEvery || 300;
       this.curve = (curve || this.defaultSpawnCurve).bind(this);
@@ -26,6 +27,11 @@
           entity.addComponent(new BoundaryRemovable);
         }
       }, this);
+
+      // Initial spawn
+      if (this.tick == 0 && this.slopePoint == this.initialSlopePoint) {
+        this.spawn();
+      }
 
       var toSpawn = Math.floor(this.curve(this.slopePoint) * 10);
 
@@ -52,7 +58,7 @@
       function zombieSpawnPosition(area, goPoint) {
         // TODO: alter this to gameOverPosition
         var GOAL_POSITION = goPoint;
-        
+
         // zombie walking angle
         var randAngle = Math.random() * Math.PI;
         var yDistance = area.height - GOAL_POSITION.y;
