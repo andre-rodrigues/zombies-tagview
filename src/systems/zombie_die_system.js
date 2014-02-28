@@ -2,6 +2,20 @@
   "use strict";
 
   window.ZombieDieSystem = bb.System.extend({
+
+    init: function() {
+      this.parent();
+      this.dyingSounds = [
+        "zombieDying1",
+        "zombieDying2",
+        "zombieDying3",
+        "zombieDying4",
+        "zombieDying5",
+        "zombieDying6",
+        "zombieDying7"
+      ];
+    },
+
     allowEntity: function(entity) {
       return entity.hasTag("zombie") && entity.hasComponent("life");
     },
@@ -31,8 +45,11 @@
           entity.animation.repeat = 0;
 
           entity.addComponent(new Expire(entity.animation.totalTime));
+
+          var zombieDying = this.world.createEntity();
+          zombieDying.addComponent(new Sound(this.dyingSounds.sample()));
         }
-      });
+      }, this);
     }
   });
 })(window, bb);
