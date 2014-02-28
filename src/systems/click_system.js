@@ -22,15 +22,19 @@
       this.clicks.push({ x: event.offsetX, y: event.offsetY });
     },
 
-    isClicking: function(entity) {
-      return this.clicks.some(function(click) {
-        return entity.spatial.contains({ x: click.x, y: click.y });
-      }, this);
-    },
-
     process: function() {
-      this.entities.forEach(function(entity) {
-        entity.clickable.isClicked = this.isClicking(entity);
+      this.clicks.forEach(function(click) {
+        var clicked = this.entities.filter(function(entity) {
+          return entity.spatial.contains({ x: click.x, y: click.y });
+        });
+
+        if (clicked.length > 0) {
+          var entity = clicked.max(function(entity) {
+            return entity.spatial.y;
+          });
+
+          entity.clickable.isClicked = true;
+        }
       }, this);
 
       this.clicks.clear();

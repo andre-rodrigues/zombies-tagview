@@ -23,7 +23,7 @@
     process: function() {
       this.entities.forEach(function(entity) {
         if (entity.hasComponent("clickable") && entity.clickable.isClicked) {
-          entity.life.takeDamage(10);
+          entity.life.takeDamage(Infinity); // It is a killing blow for now
         }
 
         if (entity.life.isDead()) {
