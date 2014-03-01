@@ -134,12 +134,14 @@
       var zombieSpawnSystem = new ZombieSpawnSystem(world.screen);
 
       world.addSystem(new ExpirationSystem)
+           .addSystem(new BlinkSystem)
            .addSystem(new CountdownSystem)
            .addSystem(zombieSpawnSystem)
            .addSystem(new WalkingSystem)
            .addSystem(new BoundingSystem(world.screen))
            .addSystem(new ClickSystem(this.views.ctx.canvas))
            .addSystem(new ZombieDieSystem)
+           .addSystem(new ZombieDeadSystem)
            .addSystem(new AnimationSystem)
            .addSystem(new SoundSystem(this.sounds))
            .addSystem(new ScoreCountSystem(this.views.score))

@@ -67,6 +67,10 @@
 
     isStopped: function() {
       return this.cycles > this.repeat;
+    },
+
+    hasEnded: function() {
+      return this.elapsedTime > this.totalTime;
     }
   });
 
